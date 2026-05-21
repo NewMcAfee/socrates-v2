@@ -19,7 +19,7 @@ Skill de **design investigativo** pra Claude Code. Transforma contexto investiga
 | **`roteiro-kickoff`** (default greenfield) | Vault inicializado pós-bootstrap + Handoff Operacional disponível + kickoff agendado | Handoff Operacional + `claude.md` + Tese GTM v2.2 | Briefing v0 + pasta de Kickoff + `_evento.md` + Roteiro de Kickoff (4 outputs) | Roteiro: **Acima** (cliente vê) · demais: Abaixo |
 | **`pos-kickoff`** (síntese cross-source) | Kickoff (e check-ins) já aconteceu com transcrição preservada em NotebookLM | OSINT (F0-X do `public-context-curator`) + NotebookLM via MCP | Debriefing F0-Y (`20-snapshots/YYYY-MM/debriefing-pos-kickoff.md`) + (cond.) Briefing v1 promovido | Abaixo |
 | **`no-kickoff`** (sem reunião com cliente) | Cliente já roda há tempo, sem kickoff formal — operador é informante primário | Operador (interrogatório 10 blocos) + OSINT (cond.) + NotebookLM legado (cond.) | Briefing v1 direto (`10-fundacao/briefing-inicial.md` `version: pos-kickoff`, `via: no-kickoff`) | Abaixo |
-| **`briefing-cliente`** (legado V4 Dante) | Insumos diversos do operador (notas, conversas, materiais soltos) | Insumos avulsos | Briefing estruturado em Markdown | Abaixo |
+| **`briefing-cliente`** (legado v1) | Insumos diversos do operador (notas, conversas, materiais soltos) | Insumos avulsos | Briefing estruturado em Markdown | Abaixo |
 
 **Routing:** explícito pelo operador via prompt. Não há routing automático state-based — depende da intenção declarada. Default em projetos Growth IA Ops v2.0 greenfield: `roteiro-kickoff`. Default em retrofit de cliente legado: `no-kickoff` (se sem transcrição) ou `pos-kickoff` (se com transcrição em NotebookLM).
 
@@ -83,9 +83,9 @@ Bateria de perguntas em [`socrates/references/perguntas-operador-no-kickoff.md`]
 
 ---
 
-## Modo `briefing-cliente` (legado V4 Dante)
+## Modo `briefing-cliente` (legado v1)
 
-Compatibilidade com workflow v1 V4 Dante. Recebe insumos avulsos do operador (notas, conversas, materiais soltos) e produz briefing estruturado em Markdown. Detalhes em [`socrates/references/modo-briefing-cliente-legado.md`](socrates/references/modo-briefing-cliente-legado.md).
+Compatibilidade com workflow v1 legado. Recebe insumos avulsos do operador (notas, conversas, materiais soltos) e produz briefing estruturado em Markdown. Detalhes em [`socrates/references/modo-briefing-cliente-legado.md`](socrates/references/modo-briefing-cliente-legado.md).
 
 ---
 

@@ -1,4 +1,4 @@
-# Modo `briefing-cliente` — Legado V4 Dante (compatibilidade)
+# Modo `briefing-cliente` — Legado v1 (compatibilidade)
 
 > Reference da skill `socrates`. Documenta o modo legado preservado em compatibilidade.
 
@@ -30,18 +30,18 @@ NÃO ativar:
 
 ## Comportamento
 
-Cobre o caso original da skill V1 V4 Dante:
+Cobre o caso original da skill v1:
 - **Inputs:** insumos diversos do operador (notas, conversas, materiais soltos, transcrições parciais).
 - **Output:** briefing estruturado em Markdown — sem path canônico fixo (operador define onde salvar).
 - **Schema:** flexível, derivado do que os insumos cobrem. Skill organiza em seções razoáveis.
 
-Comportamento canônico mantido conforme V1 — ver snapshot em `~/.claude/skills/_legado-dante-v1/socrates/SKILL.md`.
+Comportamento canônico mantido conforme V1.
 
 ---
 
 ## Por que preservar?
 
-1. **Compatibilidade** com workflows V4 Dante anteriores que ainda usam o modo.
+1. **Compatibilidade** com workflows v1 anteriores que ainda usam o modo.
 2. **Transição** — durante migração de projetos legados (Manchester, Grupo Colina, etc.), pode haver chamadas residuais ao modo `briefing-cliente`.
 3. **Uso ad-hoc** — operador pode precisar produzir briefing fora do fluxo canônico (ex: briefing pra reunião interna, briefing pra parceiro fora de projeto).
 

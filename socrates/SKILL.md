@@ -7,7 +7,7 @@ description: |
   - **`roteiro-kickoff`** (default greenfield — Subfase 0.3): produz 4 outputs pré-kickoff: Briefing Inicial v0 + pasta de kickoff + `_evento.md` placeholder + Roteiro de Kickoff com 8 dimensões obrigatórias.
   - **`pos-kickoff`** (kickoff já aconteceu com transcrição em NotebookLM): cruza OSINT (F0-X do `public-context-curator`) × NotebookLM via MCP em matriz convergente/complementar/divergente/lacuna, produz `debriefing-pos-kickoff.md` (snapshot F0-Y com 15 seções) e opcionalmente promove pra Briefing v1. Captura sinais críticos que cliente ou OSINT isolados não produzem (validado no Onco Import 2026-05-13 — divergência stakeholders LinkedIn × reuniões, operações regulatórias não tratadas, claims problemáticos não auditados).
   - **`no-kickoff`** (cliente já roda há tempo, sem reunião de discovery formal — operador é informante primário): interroga operador em 10 blocos de perguntas + consome OSINT + consulta NotebookLM legado opcional, produz Briefing v1 direto sem snapshot intermediário.
-  - **`briefing-cliente`** legado V4 Dante preservado em compatibilidade.
+  - **`briefing-cliente`** legado v1 preservado em compatibilidade.
 
   Ative quando operador disser "preparar kickoff do projeto X" / "rodar socrates roteiro-kickoff" / "produzir briefing v0 e roteiro de kickoff" / "etapa 0.3 da Fase 0" (modo `roteiro-kickoff`), "consolidar debriefing pós-kickoff do projeto X" / "cruzar OSINT com NotebookLM" / "promover Briefing v0 para v1 usando NotebookLM" / "debriefing F0-Y do projeto X" (modo `pos-kickoff`), "cliente X não vai ter kickoff, gera briefing v1 direto" / "consolidar briefing inicial via interrogatório do operador" / "cliente já roda há tempo, monta briefing sem reunião" (modo `no-kickoff`).
 
@@ -19,7 +19,7 @@ mcp_requerido:
 
 # socrates — Design investigativo de briefing e pergunta
 
-Skill de **design investigativo**. Bounded Context: transforma contexto investigado em **documento estruturado de briefing** OU **roteiro de pergunta investigativa**. V1 V4 Dante reaproveitada e expandida em B2 do roadmap (Detalhamento da Fase 0) com **4 modos canônicos** cobrindo os cenários de discovery na Fase 0 (greenfield, kickoff-já-feito, cliente-em-curso).
+Skill de **design investigativo**. Bounded Context: transforma contexto investigado em **documento estruturado de briefing** OU **roteiro de pergunta investigativa**. V1 reaproveitada e expandida em B2 do roadmap (Detalhamento da Fase 0) com **4 modos canônicos** cobrindo os cenários de discovery na Fase 0 (greenfield, kickoff-já-feito, cliente-em-curso).
 
 **Princípio 1 (Especialização por Entrega):** critério de quebra **não** justifica skill nova — vocabulário e repertório dos outputs de todos os modos são homogêneos (todos consolidam contexto investigativo em briefing estruturado, variando apenas a fonte primária e o estado de entrada).
 
@@ -32,7 +32,7 @@ Skill de **design investigativo**. Bounded Context: transforma contexto investig
 | **`roteiro-kickoff`** (default greenfield) | Vault inicializado pós-bootstrap + Handoff Operacional disponível + kickoff agendado | Handoff Operacional + claude.md + Tese GTM v2.2 | Briefing v0 + pasta de kickoff + `_evento.md` + Roteiro de Kickoff (4 outputs) | Roteiro: **Acima** (cliente vê) · demais: Abaixo |
 | **`pos-kickoff`** (síntese cross-source) | Kickoff (e check-ins) já aconteceu com transcrição preservada em NotebookLM | OSINT (F0-X do `public-context-curator`) + NotebookLM via MCP | Debriefing F0-Y (`20-snapshots/YYYY-MM/debriefing-pos-kickoff.md`) + (cond.) Briefing v1 promovido | Abaixo |
 | **`no-kickoff`** (sem reunião com cliente) | Cliente já roda há tempo, sem kickoff formal — operador é informante primário | Operador (interrogatório 10 blocos) + OSINT (cond.) + NotebookLM legado (cond.) | Briefing v1 direto (`10-fundacao/briefing-inicial.md` `version: pos-kickoff`, `via: no-kickoff`) | Abaixo |
-| **`briefing-cliente`** (legado V4 Dante) | Insumos diversos do operador (notas, conversas, materiais soltos) | Insumos avulsos | Briefing estruturado em Markdown | Abaixo |
+| **`briefing-cliente`** (legado v1) | Insumos diversos do operador (notas, conversas, materiais soltos) | Insumos avulsos | Briefing estruturado em Markdown | Abaixo |
 
 **Routing:** explícito pelo operador via prompt. Não há routing automático state-based — depende da intenção declarada. Default em projetos Growth IA Ops v2.0 greenfield: `roteiro-kickoff`. Default em retrofit de cliente legado: `no-kickoff` (se sem transcrição) ou `pos-kickoff` (se com transcrição em NotebookLM). Modo `briefing-cliente` disponível pra compatibilidade — ver [`references/modo-briefing-cliente-legado.md`](references/modo-briefing-cliente-legado.md).
 
@@ -308,9 +308,9 @@ Cenário: cliente **já roda há tempo** na V4 (não é greenfield) e **NÃO vai
 
 ---
 
-## Modo `briefing-cliente` (legado V4 Dante)
+## Modo `briefing-cliente` (legado v1)
 
-Modo legado preservado pra compatibilidade com workflows V4 Dante anteriores. Ativado por trigger explícito do operador (não default). Cobre o caso original da v1: organizar insumos diversos do operador (notas, conversas, materiais soltos) em briefing estruturado em Markdown.
+Modo legado preservado pra compatibilidade com workflows v1 anteriores. Ativado por trigger explícito do operador (não default). Cobre o caso original da v1: organizar insumos diversos do operador (notas, conversas, materiais soltos) em briefing estruturado em Markdown.
 
 **Status arquitetural:** preservado mas não documentado detalhadamente nesta skill. Refatoração formal reservada pra Bloco B7 (Catálogo canônico de outputs por skill). Detalhe operacional em [`references/modo-briefing-cliente-legado.md`](references/modo-briefing-cliente-legado.md).
 
@@ -381,7 +381,7 @@ SISTEMA (Claude Code + skills)
 - Tese Growth IA Ops v2.0 — Princípios 1, 4, 6, 8, 10, 11
 - Tese de Maturidade GTM v2.2 — define dimensões a investigar pra Pillars-Health
 - Fase 0 detalhada — etapa 0.3 invoca esta skill
-- Skill V4 Dante original `/socrates` — base legada (modo `briefing-cliente`)
+- Skill v1 original `/socrates` — base legada (modo `briefing-cliente`)
 - [Eric Evans — DDD: Bounded Context](https://www.domainlanguage.com/ddd/) — fundamento do Princípio 4
 - [Tiago Forte — CODE (Capture/Organize/Distill/Express)](https://www.buildingasecondbrain.com/) — ciclo cognitivo da skill (Princípio 11)
 
@@ -403,4 +403,4 @@ SISTEMA (Claude Code + skills)
 - [`references/perguntas-operador-no-kickoff.md`](references/perguntas-operador-no-kickoff.md) — bateria de 10 blocos (A-J) de interrogatório operador
 
 ### Modo `briefing-cliente`
-- [`references/modo-briefing-cliente-legado.md`](references/modo-briefing-cliente-legado.md) — modo V4 Dante preservado em compatibilidade
+- [`references/modo-briefing-cliente-legado.md`](references/modo-briefing-cliente-legado.md) — modo legado preservado em compatibilidade
